@@ -3,17 +3,24 @@ import React, { Component } from 'react'
 class TodoForm extends Component {
     constructor(props) {
         super(props);
+        console.log(props)
         this.state = {
             addtask: ''
-        }
+        };
+        console.log(this.state)
+    };
+
+    handleChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
     }
 
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value })
-    }
-
-    handleSubmit(event) {
+    handleSubmit = e => {
         console.log('handling submit');
+        e.preventDefault();
+        console.log(this.props);
+        this.props.addTasks(this.state.addtask)
     }
 
     render() {
@@ -23,12 +30,12 @@ class TodoForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         <input
-                            name='task'
+                            name='addtask'
                             type='text'
                             placeholder='Add new task here'
                             title='Task'
-                            value={this.state.addtask}
                             onChange={this.handleChange}
+                            value={this.state.addtask}
                         />
                         <button>Add</button>
                         <button>Clear</button>
@@ -38,9 +45,5 @@ class TodoForm extends Component {
         );
     }
 }
-
-{/* <input
-type='checkbox'
-/> */}
 
 export default TodoForm;

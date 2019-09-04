@@ -2,9 +2,7 @@ import React from 'react'
 import './Todo.css'
 
 class Todo extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+
     render() {
         // console.log(this.props)
         return (
